@@ -1,0 +1,60 @@
+### DESCRIPTION
+AccToTax is able to infer lineages, a taxonomic tree and scientific names from the NCBI database using 
+a local (offline) accessible NCBI taxonomy database and the NCBI web API. 
+This tool accept as input: files or command line given list of (fuzzy) names, nucleotide accession numbers, 
+protein accession numbers and/or taxonomic IDs.
+
+### DEPENDENCIES
+perl >= 5.
+Try::Tiny
+XML::Simple
+Tree::Simple
+Bio::Perl
+Bio::DB::EUtilities
+
+### INSTALLATION
+1) download the latest acctotax release from https://github.com/koriege/acctotax
+git clone --recursive https://github.com/koriege/acctotax.git
+2) enter the acctotax directory 
+cd acctotax
+3) checkout latest stable release
+git checkout v0.1.1
+4 - method 1) installation via cpanm
+# for non-default path, execute cpanm -l /my/custom/path .
+cpanm .
+make clean
+4 - method 2) installation via make
+# for non-default path, execute perl Makefile.PL PREFIX=/my/custom/path
+perl Makefile.PL
+make
+make install
+make clean
+
+### SYNOPSIS 
+acctotax.pl -nam [name] -nam [name] -nuc [accNr] -tree [path] [parameter] > [results]
+
+### GENERAL OPTIONS
+-h       | --help                      : this message
+-tmp     | --tmpdir [path]             : optional - set path to a directory - default: ./
+-dbnodes | --dbncbinodes               : optional - set path to nodesfile of a local NCBI taxonomy for speedup
+-dbnames | --dbncbinames               : optional - set path to namesfile of a local NCBI taxonomy for speedup
+-r       | --reconnects                : optional - set number of tries to connect to NCBI web API - default: 2
+
+### INPUT OPTIONS
+-nam     | --name [name]               : (multiple) input of single, scientific (fuzzy) organism names
+-namf    | --namesfile [path]          : input a file containing names (one per line)
+-nuc     | --nucleotidesacc [accNr]    : (multiple) input of single nucleotide accession numbers
+-nucf    | --nucleotideaccsfile [path] : input a file containing nucleotide accession numbers (one per line)
+-pro     | --proteinacc [accNr]        : (multiple) input of single protein accession numbers
+-prof    | --proteinaccsfile [path]    : input a file containing protein accession numbers (one per line)
+-tax     | --taxid [taxid]             : (multiple) input of single taxonomic IDs
+-taxf    | --taxidsfile [path]         : input a file containing taxonomic IDs (one per line)
+
+### OUTPUT OPTIONS
+-on      | --outnames                  : optional - output also scientific names
+-tree    | --treefile [path]           : optional - create a subtree of NCBI taxonomy and output newick format
+-c       | --contract                  : optional - contract linear paths in subtree output
+
+### REFERENCES
+(c) Konstantin Riege
+konstantin{a}bioinf{.}uni-leipzig{.}de
