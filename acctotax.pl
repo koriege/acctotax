@@ -371,7 +371,7 @@ sub getLineageIDs {
 		my ($error, $try) = (1, 0);
 		while($error && (++$try) < $tries){
 			$error = 0;
-			try{			
+			try{
 				my $factory = Bio::DB::EUtilities->new(
 					-eutil => 'efetch', 
 					-email => 'mymail@foo.bar', 
@@ -395,6 +395,7 @@ sub getLineageIDs {
 		push @nodes, $taxid;
 	}
 	if ($#nodes > -1){
+		push @{$idToLineage{$taxid}}, @nodes;
 		return @nodes;
 	} else {
 		die "No lineage found for $taxid"; # above: catch error and print as warning
