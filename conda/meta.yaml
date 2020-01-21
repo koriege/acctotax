@@ -1,19 +1,20 @@
 package:
   name: acctotax
-  version: "0.1.0"
+  version: "0.1.2"
 
 source:
-  git_rev: v0.1.0
+  git_rev: v0.1.2
   git_url: https://github.com/koriege/acctotax.git
 
 requirements:
   run:
     - perl >=5.10
     - perl-bioperl
+    - perl-bio-eutilities
     
 test:
   commands:
-    - speciesToLineage.pl -h
+    - acctotax.pl -h
  
 about:
   home: https://github.com/koriege/acctotax

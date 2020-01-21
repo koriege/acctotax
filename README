@@ -11,6 +11,7 @@ XML::Simple
 Tree::Simple
 Bio::Perl
 Bio::DB::EUtilities
+LWP::Protocol::https
 
 ### INSTALLATION
 1) download the latest acctotax release from https://github.com/koriege/acctotax
@@ -18,7 +19,7 @@ git clone --recursive https://github.com/koriege/acctotax.git
 2) enter the acctotax directory 
 cd acctotax
 3) checkout latest stable release
-git checkout v0.1.1
+git checkout v0.1.2
 4 - method 1) installation via cpanm
 # for non-default path, execute cpanm -l /my/custom/path .
 cpanm .
@@ -31,7 +32,7 @@ make install
 make clean
 
 ### SYNOPSIS 
-acctotax.pl -nam [name] -nam [name] -nuc [accNr] -tree [path] [parameter] > [results]
+acctotax.pl -nam [name] -nam [name] -nuc [accNr] -tree [path] [...] > [path]
 
 ### GENERAL OPTIONS
 -h       | --help                      : this message

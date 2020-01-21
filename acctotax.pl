@@ -3,7 +3,7 @@
 use v5.10;
 use strict;
 use warnings;
-use version; our $VERSION = qv('0.1.1');
+use version; our $VERSION = qv('0.1.2');
 use sigtrap qw(handler cleanup INT TERM KILL);
 use Tree::Simple;
 use Bio::Tree::Node;
@@ -174,7 +174,7 @@ sub treeinsert {
 			$ref->add_Descendent($node);
 			&treeinsert($node, @tail);
 		} else {
-			&tree($tmp[0], @tail);
+			&treeinsert($tmp[0], @tail);
 		} 
 	} else {
 		my @tmp = grep {$_->id eq $head} $ref->each_Descendent;
@@ -218,6 +218,7 @@ sub getNameFromID {
 				);
 				($name) = $factory->next_DocSum->get_contents_by_name('ScientificName');
 			} catch {
+                print STDERR ":ERROR: $_";
 				$error = 1;
 			};
 		}
@@ -257,6 +258,7 @@ sub getIDfromName {
 					last;
 				}
 			} catch {
+                print STDERR ":ERROR: $_";
 				$error = 1;
 			};
 		}
@@ -302,6 +304,7 @@ sub getIDfromNuclacc { # web api only
 				# $name = &flatname($docsum->get_contents_by_name('Title'));
 			}
 		} catch {
+            print STDERR ":ERROR: $_";
 			$error = 1;
 		};
 	}
@@ -342,6 +345,7 @@ sub getIDfromProtacc { # web api only
 				# $name = &flatname($docsum->get_contents_by_name('Title'));
 			}
 		} catch {
+            print STDERR ":ERROR: $_";
 			$error=1;
 		};
 	}
@@ -389,6 +393,7 @@ sub getLineageIDs {
 					}
 				}
 			} catch {
+                print STDERR ":ERROR: $_";
 				$error = 1;
 			};
 		}
